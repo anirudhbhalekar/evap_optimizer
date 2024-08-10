@@ -142,6 +142,13 @@
       </property>
      </widget>
     </item>
+    <item>
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>Update</string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="Line" name="line_3">
@@ -157,30 +164,174 @@
     <enum>Qt::Vertical</enum>
    </property>
   </widget>
-  <widget class="QTableWidget" name="forecastTable">
+  <widget class="QTabWidget" name="tabWidget">
    <property name="geometry">
     <rect>
      <x>380</x>
-     <y>31</y>
+     <y>30</y>
      <width>301</width>
      <height>251</height>
     </rect>
    </property>
-   <column>
-    <property name="text">
-     <string>Time</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>Temp (C)</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>RH (%)</string>
-    </property>
-   </column>
+   <property name="currentIndex">
+    <number>3</number>
+   </property>
+   <widget class="QWidget" name="tab">
+    <attribute name="title">
+     <string>Forecast</string>
+    </attribute>
+    <widget class="QTableWidget" name="forecastTable">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>301</width>
+       <height>221</height>
+      </rect>
+     </property>
+     <column>
+      <property name="text">
+       <string>Time</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Temp (C)</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>RH (%)</string>
+      </property>
+     </column>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_2">
+    <attribute name="title">
+     <string>Controls</string>
+    </attribute>
+    <widget class="QTableWidget" name="controlTable">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>301</width>
+       <height>221</height>
+      </rect>
+     </property>
+     <column>
+      <property name="text">
+       <string>Time</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Brine Temp (C) </string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Brine Flow Rate (L/Hr)</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Air Speed (m/s)</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Evap Rate (L/Hr/Pan)</string>
+      </property>
+     </column>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_3">
+    <attribute name="title">
+     <string>Outlets</string>
+    </attribute>
+    <widget class="QTableWidget" name="outputsTable">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>301</width>
+       <height>221</height>
+      </rect>
+     </property>
+     <column>
+      <property name="text">
+       <string>Time</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Outlet Brine Temp (C)</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Outlet Humidity (%)</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Outlet Air Temp (C)</string>
+      </property>
+     </column>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_4">
+    <attribute name="title">
+     <string>Result</string>
+    </attribute>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>221</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Optimized Evaporation Rate (L/Hr/Pan)</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>90</y>
+       <width>221</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Heating Power (kWHr)</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="OER_line">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>201</width>
+       <height>24</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="HP_line">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>110</y>
+       <width>201</width>
+       <height>24</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
   </widget>
  </widget>
  <resources/>
