@@ -148,7 +148,7 @@ class EvapOptimizer():
             indices[i] = np.argmin(pow)
 
         self.current_evap = 0
-        self.MAX_ITER = 1000
+        self.MAX_ITER = 10000
         count = 0
 
         # Iteration procedure
@@ -172,11 +172,17 @@ class EvapOptimizer():
                         min_energy_inc = diff
                         new_indices = [i, j]
 
+            self.energy_consumption = 0
+
+            for index, power_row in zip(indices, self.pow_arr):
+                self.energy_consumption += 24 * power_row[int(index)] / 1000
+
             indices[new_indices[0]] = new_indices[1]
             print("-"*100)
             print(f"Iteration {count}".center(100))
             print(f"Current Evap Rate : {self.current_evap}".center(100))
             print(f"Target Evap Rate : {self.target_per_tube}".center(100))
+            print(f"Current Energy Consumption : {self.energy_consumption}".center(100))
             print("-"*100)
 
 

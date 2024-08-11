@@ -174,7 +174,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>3</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -239,11 +239,6 @@
        <string>Air Speed (m/s)</string>
       </property>
      </column>
-     <column>
-      <property name="text">
-       <string>Evap Rate (L/Hr/Pan)</string>
-      </property>
-     </column>
     </widget>
    </widget>
    <widget class="QWidget" name="tab_3">
@@ -290,12 +285,12 @@
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>221</width>
+       <width>231</width>
        <height>16</height>
       </rect>
      </property>
      <property name="text">
-      <string>Optimized Evaporation Rate (L/Hr/Pan)</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Optimized Evaporation Rate (L/Hr/Pan)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_5">
@@ -308,7 +303,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Heating Power (kWHr)</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Heating Power (kWHr)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
     <widget class="QLineEdit" name="OER_line">
