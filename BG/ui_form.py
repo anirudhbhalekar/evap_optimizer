@@ -179,7 +179,7 @@ class Ui_EO_Window(object):
 
         self.retranslateUi(EO_Window)
 
-        self.tabWidget.setCurrentIndex(3)
+        self.tabWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(EO_Window)

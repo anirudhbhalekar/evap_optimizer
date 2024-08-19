@@ -156,7 +156,7 @@ class EvapOptimizer():
             count += 1
             self.current_evap = 0
             for i, ind in enumerate(indices):
-                self.current_evap += self.evap_arr[i][int(ind)] * 120 * 3
+                self.current_evap += self.evap_arr[i][int(ind)] * 120 * 24
             if self.current_evap > self.target_per_tube:
                 self.is_optimized = True
                 break 
