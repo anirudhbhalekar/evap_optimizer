@@ -30,7 +30,7 @@ class EvapOptimizer():
         self.file_name = file_name
         workbook = openpyxl.load_workbook(file_name)
         try:
-            sheet = workbook["database"]
+            sheet = workbook["modif_database"]
             print("Database Found".center(100))
         except Exception:
             raise ValueError("Database sheet does not exist")
@@ -142,11 +142,13 @@ class EvapOptimizer():
         self.is_optimized = False
         self.optimal_config = []
 
+
         indices = np.zeros(len(self.forecast_array))
         # Initialisation step
         for i, pow in enumerate(self.pow_arr):
             indices[i] = np.argmin(pow)
 
+        self.prev_evap = 0
         self.current_evap = 0
         self.MAX_ITER = 10000
         count = 0
@@ -156,7 +158,7 @@ class EvapOptimizer():
             count += 1
             self.current_evap = 0
             for i, ind in enumerate(indices):
-                self.current_evap += self.evap_arr[i][int(ind)] * 120 * 24
+                self.current_evap += self.evap_arr[i][int(ind)] * 120 * 3
             if self.current_evap > self.target_per_tube:
                 self.is_optimized = True
                 break 
@@ -175,7 +177,7 @@ class EvapOptimizer():
             self.energy_consumption = 0
 
             for index, power_row in zip(indices, self.pow_arr):
-                self.energy_consumption += 24 * power_row[int(index)] / 1000
+                self.energy_consumption += 120 * 3 * power_row[int(index)] / 1000
 
             indices[new_indices[0]] = new_indices[1]
             print("-"*100)
@@ -184,6 +186,11 @@ class EvapOptimizer():
             print(f"Target Evap Rate : {self.target_per_tube}".center(100))
             print(f"Current Energy Consumption : {self.energy_consumption}".center(100))
             print("-"*100)
+
+            if self.prev_evap == self.current_evap: 
+                break 
+
+            self.prev_evap = self.current_evap
 
 
         for i, index in enumerate(indices):
@@ -217,3 +224,24 @@ class EvapOptimizer():
             sheet.cell(row_ind, 13).value = config[14]
 
         workbook.save(self.file_name)
+    
+    def set_forecast(self, dt_arr, temp_arr, rh_arr):
+        if self.file_name is None:
+            assert ValueError("Load Workbook First")
+        workbook = openpyxl.load_workbook(self.file_name)
+        try:
+            sheet = workbook["forecast"]
+        except Exception:
+            raise ValueError("Forecast sheet does not exist")
+        
+        for j in range(len(dt_arr)): 
+            sheet.cell(j+2, 1).value = dt_arr[j]
+            sheet.cell(j+2, 2).value = temp_arr[j]
+            sheet.cell(j+2, 3).value = rh_arr[j]
+        
+        workbook.save(self.file_name)
+        self.load_forecast()
+
+
+
+        

@@ -24,8 +24,9 @@ class Ui_EO_Window(object):
     def setupUi(self, EO_Window):
         if not EO_Window.objectName():
             EO_Window.setObjectName(u"EO_Window")
-        EO_Window.resize(699, 289)
-        EO_Window.setMinimumSize(QSize(161, 203))
+        EO_Window.resize(691, 289)
+        EO_Window.setMinimumSize(QSize(691, 289))
+        EO_Window.setMaximumSize(QSize(691, 289))
         self.verticalLayoutWidget = QWidget(EO_Window)
         self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
         self.verticalLayoutWidget.setGeometry(QRect(10, 30, 141, 251))
@@ -44,13 +45,15 @@ class Ui_EO_Window(object):
 
         self.terminal = QTextBrowser(self.verticalLayoutWidget)
         self.terminal.setObjectName(u"terminal")
-        self.terminal.setEnabled(False)
+        self.terminal.setEnabled(True)
+        self.terminal.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
+        self.terminal.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
 
         self.verticalLayout.addWidget(self.terminal)
 
         self.line = QFrame(EO_Window)
         self.line.setObjectName(u"line")
-        self.line.setGeometry(QRect(0, 18, 711, 16))
+        self.line.setGeometry(QRect(0, 18, 801, 16))
         self.line.setFrameShape(QFrame.Shape.HLine)
         self.line.setFrameShadow(QFrame.Shadow.Sunken)
         self.label_2 = QLabel(EO_Window)
@@ -96,16 +99,6 @@ class Ui_EO_Window(object):
         self.InspectResultsBttn.setObjectName(u"InspectResultsBttn")
 
         self.verticalLayout_2.addWidget(self.InspectResultsBttn)
-
-        self.pushButton_4 = QPushButton(self.verticalLayoutWidget_2)
-        self.pushButton_4.setObjectName(u"pushButton_4")
-
-        self.verticalLayout_2.addWidget(self.pushButton_4)
-
-        self.pushButton = QPushButton(self.verticalLayoutWidget_2)
-        self.pushButton.setObjectName(u"pushButton")
-
-        self.verticalLayout_2.addWidget(self.pushButton)
 
         self.line_3 = QFrame(EO_Window)
         self.line_3.setObjectName(u"line_3")
@@ -159,7 +152,7 @@ class Ui_EO_Window(object):
         __qtablewidgetitem10 = QTableWidgetItem()
         self.outputsTable.setHorizontalHeaderItem(3, __qtablewidgetitem10)
         self.outputsTable.setObjectName(u"outputsTable")
-        self.outputsTable.setGeometry(QRect(0, 0, 301, 221))
+        self.outputsTable.setGeometry(QRect(0, 0, 411, 221))
         self.tabWidget.addTab(self.tab_3, "")
         self.tab_4 = QWidget()
         self.tab_4.setObjectName(u"tab_4")
@@ -179,7 +172,7 @@ class Ui_EO_Window(object):
 
         self.retranslateUi(EO_Window)
 
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(3)
 
 
         QMetaObject.connectSlotsByName(EO_Window)
@@ -189,13 +182,19 @@ class Ui_EO_Window(object):
         EO_Window.setWindowTitle(QCoreApplication.translate("EO_Window", u"EO_Window", None))
         self.LoadExcelFileBttn.setText(QCoreApplication.translate("EO_Window", u"Load Excel File", None))
         self.OptimizerBttn.setText(QCoreApplication.translate("EO_Window", u"Run Optimizer", None))
+        self.terminal.setHtml(QCoreApplication.translate("EO_Window", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
         self.label_2.setText(QCoreApplication.translate("EO_Window", u"<html><head/><body><p align=\"center\"><span style=\" font-size:11pt; font-weight:700;\">Evap Optimizer</span></p></body></html>", None))
-        self.label_3.setText(QCoreApplication.translate("EO_Window", u"<html><head/><body><p align=\"center\"><span style=\" font-weight:700;\">Set Target per Tube (Litres)</span></p></body></html>", None))
+        self.label_3.setText(QCoreApplication.translate("EO_Window", u"<html><head/><body><p align=\"center\"><span style=\" font-weight:700;\">Set Target per Tube (Litres/Day)</span></p></body></html>", None))
         self.label.setText(QCoreApplication.translate("EO_Window", u"<html><head/><body><p align=\"center\"><span style=\" font-weight:700;\">Location for Forecast</span></p></body></html>", None))
         self.LoadForecast.setText(QCoreApplication.translate("EO_Window", u"Load Forecast", None))
         self.InspectResultsBttn.setText(QCoreApplication.translate("EO_Window", u"Inspect Results Sheet (Excel)", None))
-        self.pushButton_4.setText(QCoreApplication.translate("EO_Window", u"Open Tutorial", None))
-        self.pushButton.setText(QCoreApplication.translate("EO_Window", u"Update", None))
         ___qtablewidgetitem = self.forecastTable.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("EO_Window", u"Time", None));
         ___qtablewidgetitem1 = self.forecastTable.horizontalHeaderItem(1)
@@ -221,7 +220,7 @@ class Ui_EO_Window(object):
         ___qtablewidgetitem10 = self.outputsTable.horizontalHeaderItem(3)
         ___qtablewidgetitem10.setText(QCoreApplication.translate("EO_Window", u"Outlet Air Temp (C)", None));
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QCoreApplication.translate("EO_Window", u"Outlets", None))
-        self.label_4.setText(QCoreApplication.translate("EO_Window", u"<html><head/><body><p><span style=\" font-weight:700;\">Optimized Evaporation Rate (L/Hr/Pan)</span></p></body></html>", None))
+        self.label_4.setText(QCoreApplication.translate("EO_Window", u"<html><head/><body><p><span style=\" font-weight:700;\">Optimized Evaporation Rate (Litres/Day)</span></p></body></html>", None))
         self.label_5.setText(QCoreApplication.translate("EO_Window", u"<html><head/><body><p><span style=\" font-weight:700;\">Heating Power (kWHr)</span></p></body></html>", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), QCoreApplication.translate("EO_Window", u"Result", None))
     # retranslateUi

@@ -2,3 +2,5 @@ PySide6
 pyqt6
 numpy 
 openpyxl 
+requests
+datetime 

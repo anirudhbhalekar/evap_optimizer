@@ -6,7 +6,7 @@ def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 
 def main():
-    required_packages = ['PySide6', 'numpy', 'openpyxl', 'pyqt6']
+    required_packages = ['PySide6', 'numpy', 'openpyxl', 'requests', 'datetime']
     
     for package in required_packages:
         try:
