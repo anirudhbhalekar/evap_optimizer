@@ -26,6 +26,7 @@ class EO_Window(QWidget):
         self.ui.OptimizerBttn.clicked.connect(self.optimize)
         self.ui.InspectResultsBttn.clicked.connect(self.display_excel_file)
         self.ui.LoadForecast.clicked.connect(self.load_forecast)
+        self.ui.ClearTerminalBttn.clicked.connect(self.clear_terminal)
     
     def load_excel_file(self): 
         try: 
@@ -126,13 +127,16 @@ class EO_Window(QWidget):
             time = self.evap_opt.time_array[i]
 
             self.ui.outputsTable.setItem(i, 0, QTableWidgetItem(str(time)))
-            self.ui.outputsTable.setItem(i, 1, QTableWidgetItem(str(row[10])))
-            self.ui.outputsTable.setItem(i, 2, QTableWidgetItem(str(row[11])))
-            self.ui.outputsTable.setItem(i, 3, QTableWidgetItem(str(row[12])))
+            self.ui.outputsTable.setItem(i, 1, QTableWidgetItem(str(round(float(row[10]), 3))))
+            self.ui.outputsTable.setItem(i, 2, QTableWidgetItem(str(round(float(row[11]), 3))))
+            self.ui.outputsTable.setItem(i, 3, QTableWidgetItem(str(round(float(row[12]), 3))))
+            self.ui.outputsTable.setItem(i, 4, QTableWidgetItem(str(round(float(row[13]), 3))))
+            self.ui.outputsTable.setItem(i, 5, QTableWidgetItem(str(round(float(row[14]), 3))))
 
     def load_results_data(self):
         self.ui.OER_line.setText(str(round(self.evap_opt.current_evap,3)))
-        self.ui.HP_line.setText(str(round(self.evap_opt.energy_consumption,3)))
+        self.ui.HP_line.setText(str(round(self.evap_opt.total_heating_power,3)))
+        self.ui.FP_line.setText(str(round(self.evap_opt.total_fan_power,3)))
 
     def load_forecast(self): 
         global API_KEY
@@ -210,8 +214,6 @@ class EO_Window(QWidget):
                 temp_arr.append(float(forecast_data['list'][loc_index + j]['main']['temp']) - 273.15)
                 rh_arr.append(float(forecast_data['list'][loc_index + j]['main']['humidity']))
             
-            print(temp_arr)
-            print(rh_arr)
             self.ui.terminal.append(">Forecast retrieved successfully")
             try: 
                 self.evap_opt.set_forecast(dt_text_arr, temp_arr, rh_arr)
@@ -222,12 +224,19 @@ class EO_Window(QWidget):
             
             self.display_forecast()
             self.ui.terminal.append(">Loaded Forecast Successfully")
-            
+            self.ui.controlTable.clearContents()
+            self.ui.outputsTable.clearContents()
+            self.ui.HP_line.clear()
+            self.ui.OER_line.clear()
+            self.ui.FP_line.clear()
+
         except Exception as ex: 
             self.ui.terminal.append(">Failed to load forecast data")
             self.ui.terminal.append(">" + str(ex)) 
             return 
 
+    def clear_terminal(self): 
+        self.ui.terminal.clear()
 
 def open_window():
     app = QApplication(sys.argv)

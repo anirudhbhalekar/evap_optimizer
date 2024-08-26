@@ -148,7 +148,7 @@ class EvapOptimizer():
         for i, pow in enumerate(self.pow_arr):
             indices[i] = np.argmin(pow)
 
-        self.prev_evap = 0
+        self.prev_evap = -1
         self.current_evap = 0
         self.MAX_ITER = 10000
         count = 0
@@ -159,6 +159,10 @@ class EvapOptimizer():
             self.current_evap = 0
             for i, ind in enumerate(indices):
                 self.current_evap += self.evap_arr[i][int(ind)] * 120 * 3
+            
+            for index, power_row in zip(indices, self.pow_arr):
+                self.energy_consumption += 120 * 3 * power_row[int(index)] / 1000
+
             if self.current_evap > self.target_per_tube:
                 self.is_optimized = True
                 break 
@@ -175,10 +179,6 @@ class EvapOptimizer():
                         new_indices = [i, j]
 
             self.energy_consumption = 0
-
-            for index, power_row in zip(indices, self.pow_arr):
-                self.energy_consumption += 120 * 3 * power_row[int(index)] / 1000
-
             indices[new_indices[0]] = new_indices[1]
             print("-"*100)
             print(f"Iteration {count}".center(100))
@@ -200,6 +200,8 @@ class EvapOptimizer():
 
     def store_results(self):
         # Load the results of the optimal configuration into excel workbook
+        self.total_heating_power = 0
+        self.total_fan_power = 0
         if self.file_name is None:
             assert ValueError("Load Workbook First")
         workbook = openpyxl.load_workbook(self.file_name)
@@ -223,8 +225,15 @@ class EvapOptimizer():
             sheet.cell(row_ind, 12).value = config[13]
             sheet.cell(row_ind, 13).value = config[14]
 
+            self.total_heating_power += float(config[13])
+            self.total_fan_power += float(config[14])
+
+        #Fan efficiency is 0.25 and there are 120 pans (3 hour intervals)
+        self.total_fan_power *= 120 * 3 / 1000 / 0.25 
+        self.total_heating_power *= 120 * 3 / 1000 
+        
         workbook.save(self.file_name)
-    
+
     def set_forecast(self, dt_arr, temp_arr, rh_arr):
         if self.file_name is None:
             assert ValueError("Load Workbook First")
