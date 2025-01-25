@@ -13,7 +13,7 @@ from PySide6.QtWidgets import QApplication, QWidget, QFileDialog, QMessageBox, Q
 from ui_form import Ui_EO_Window
 from eo_class import EvapOptimizer
 
-API_KEY = 'ceae7b777cd0dedabf05c94521c97aa9'
+API_KEY = 'REDACTED'
 BASE_URL = 'api.openweathermap.org'
 
 class EO_Window(QWidget):
