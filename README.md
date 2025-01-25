@@ -31,4 +31,4 @@ Also note outlet conditions in the ```Outlets``` Tab
 
 The inputs necessary to achieve result will be given in the ```Controls``` tab, values can be scraped and fed into the machine (API for this will be available soon)   
 
-Note: this application uses openweathermap.org for forecast loading (free calls so API Key is available on request if source-code modifications need to be made) 
+Note: this application uses openweathermap.org for forecast loading (API Key is free, available on request if source-code modifications need to be made) 
